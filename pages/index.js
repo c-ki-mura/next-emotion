@@ -13,6 +13,7 @@ export default function Home() {
             // alert("ローディング完了");
             setCount(999);
             setisLoading(false);
+            //
             // console.log("countは", count);
         }, 3000);
     }, []);
@@ -27,7 +28,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            {isLoading && (
+            {isLoading ? (
                 <BallTriangle
                     height={100}
                     width={100}
@@ -38,9 +39,7 @@ export default function Home() {
                     wrapperStyle=""
                     visible={true}
                 />
-            )}
-
-            {!isLoading && (
+            ) : (
                 <main className={styles.main}>
                     <p>現在の数字は{count}です</p>
                     <h1 className={styles.title}>Welcome to Kimura</h1>
