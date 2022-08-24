@@ -1,8 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { BallTriangle } from "react-loader-spinner";
+import React, { useState, useEffect } from "react";
 
 export default function Home() {
+    const [isLoading, setisLoading] = useState(true);
+    const [count, setCount] = useState(123);
+    useEffect(() => {
+        // console.log("countは", count);
+        setTimeout(() => {
+            // alert("ローディング完了");
+            setCount(999);
+            setisLoading(false);
+            //
+            // console.log("countは", count);
+        }, 3000);
+    }, []);
     return (
         <div className={styles.container}>
             <Head>
@@ -14,54 +28,74 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className={styles.main}>
-                <h1 className={styles.title}>Welcome to Kimura</h1>
+            {isLoading ? (
+                <BallTriangle
+                    height={100}
+                    width={100}
+                    radius={5}
+                    color="#4fa94d"
+                    ariaLabel="ball-triangle-loading"
+                    wrapperClass={{}}
+                    wrapperStyle=""
+                    visible={true}
+                />
+            ) : (
+                <main className={styles.main}>
+                    <p>現在の数字は{count}です</p>
+                    <h1 className={styles.title}>Welcome to Kimura</h1>
 
-                <p className={styles.description}>
-                    Get started by editing{" "}
-                    <code className={styles.code}>pages/index.js</code>
-                </p>
+                    <p className={styles.description}>
+                        Get started by editing{" "}
+                        <code className={styles.code}>pages/index.js</code>
+                    </p>
 
-                <div className={styles.grid}>
-                    <a href="https://nextjs.org/docs" className={styles.card}>
-                        <h2>Documentation &rarr;</h2>
-                        <p>
-                            Find in-depth information about Next.js features and
-                            API.
-                        </p>
-                    </a>
+                    <div className={styles.grid}>
+                        <a
+                            href="https://nextjs.org/docs"
+                            className={styles.card}
+                        >
+                            <h2>Documentation &rarr;</h2>
+                            <p>
+                                Find in-depth information about Next.js features
+                                and API.
+                            </p>
+                        </a>
 
-                    <a href="https://nextjs.org/learn" className={styles.card}>
-                        <h2>Learn &rarr;</h2>
-                        <p>
-                            Learn about Next.js in an interactive course with
-                            quizzes!
-                        </p>
-                    </a>
+                        <a
+                            href="https://nextjs.org/learn"
+                            className={styles.card}
+                        >
+                            <h2>Learn &rarr;</h2>
+                            <p>
+                                Learn about Next.js in an interactive course
+                                with quizzes!
+                            </p>
+                        </a>
 
-                    <a
-                        href="https://github.com/vercel/next.js/tree/canary/examples"
-                        className={styles.card}
-                    >
-                        <h2>Examples &rarr;</h2>
-                        <p>
-                            Discover and deploy boilerplate example Next.js
-                            projects.
-                        </p>
-                    </a>
+                        <a
+                            href="https://github.com/vercel/next.js/tree/canary/examples"
+                            className={styles.card}
+                        >
+                            <h2>Examples &rarr;</h2>
+                            <p>
+                                Discover and deploy boilerplate example Next.js
+                                projects.
+                            </p>
+                        </a>
 
-                    <a
-                        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                        className={styles.card}
-                    >
-                        <h2>Deploy &rarr;</h2>
-                        <p>
-                            Instantly deploy your Next.js site to a public URL
-                            with Vercel.
-                        </p>
-                    </a>
-                </div>
-            </main>
+                        <a
+                            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+                            className={styles.card}
+                        >
+                            <h2>Deploy &rarr;</h2>
+                            <p>
+                                Instantly deploy your Next.js site to a public
+                                URL with Vercel.
+                            </p>
+                        </a>
+                    </div>
+                </main>
+            )}
 
             <footer className={styles.footer}>
                 <a
